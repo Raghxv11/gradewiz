@@ -1,0 +1,107 @@
+.pdf-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navigation {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pdf-viewer {
+  max-width: 100%;
+  overflow-x: auto;
+  position: relative;
+}
+
+.pdf-viewer canvas {
+  max-width: 100%;
+  height: auto !important;
+  cursor: crosshair;
+}
+
+.drawing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.selection-box {
+  position: absolute;
+  border: 2px solid #007bff;
+  background-color: rgba(0, 123, 255, 0.1);
+  pointer-events: none;
+}
+
+.active-selection {
+  border: 2px dashed #007bff;
+}
+
+.confirm-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.confirm-button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.coordinates-display {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.coordinates-display h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+.coordinate-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.coordinate-item h4 {
+  margin: 0 0 10px 0;
+  color: #495057;
+}
+
+.coordinate-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.coordinate-item li {
+  color: #666;
+  margin-bottom: 5px;
+} 
