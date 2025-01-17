@@ -16,6 +16,7 @@ function PdfRendering() {
   const [currentBox, setCurrentBox] = useState(null);
   const [coordinates, setCoordinates] = useState([]);
   const overlayRef = useRef(null);
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -94,6 +95,18 @@ function PdfRendering() {
     }));
     
     setCoordinates(newCoordinates);
+    setShowMessage(true);
+    
+    // Hide message after 3 seconds
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 3000);
+  };
+
+  const handleBoxDelete = (indexToDelete) => {
+    setBoxes(prevBoxes => prevBoxes.filter((_, index) => index !== indexToDelete));
+    // Clear coordinates display when a box is deleted
+    setCoordinates([]);
   };
 
   return (
@@ -132,6 +145,11 @@ function PdfRendering() {
             </button>
           </>
         )}
+        {showMessage && (
+          <div className="success-message">
+            Coordinates generated successfully!
+          </div>
+        )}
       </div>
 
       <div className="pdf-viewer">
@@ -167,7 +185,13 @@ function PdfRendering() {
                         width: box.width,
                         height: box.height
                       }}
-                    />
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleBoxDelete(index);
+                      }}
+                    >
+                      <div className="delete-icon">×</div>
+                    </div>
                   ))}
                 {currentBox && (
                   <div
